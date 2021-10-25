@@ -1,0 +1,326 @@
+<?php 
+
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Management Project</title>
+
+    <link rel="stylesheet" href="lib/spaCSS.css">
+    <script src="lib/spaJS.js"></script>
+
+
+
+  <link rel="stylesheet" href="lib/fullcalendar.min.css" />
+  <script src="lib/jquery-3.6.0.min.js"></script>
+  <script src="lib/moment.min.js"></script>
+  <script src="lib/fullcalendar.min.js"></script>
+
+
+    <script type="text/javascript">
+        var edit_state=false;
+        var textBD="";
+    </script>
+
+
+
+
+ 
+</head>
+<body>
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------>
+
+ <div class="page" id="admin">
+
+            <header class="sidebar">
+            <div class="titlul">
+                <center>Project manager</center>
+                <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
+            </div>
+                <ul>
+
+                    <?php
+
+                        if($_SESSION['name']=="admin")
+                        {
+                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                        }
+                    ?>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
+                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
+                    <li><a href="logout.php">Log out</a></li>
+                </ul>
+            </header>
+
+
+            <section class="main">
+    <?php
+    if($_SESSION['name']=="admin")
+    {
+        echo '
+
+            <br>
+                <div align="right"  style="opacity: 0.1;" ><button id="rel"><a style="font-size: 1em" href="#" data-target="activitatile" class="nav-link" >x</a></button></div>
+            <form>
+            <center>
+             <div class="wrapper" style=" background: white; width: 500px;">
+
+                <input style="width: 50%;" type="text" id="fullname" placeholder="Numele" required autocomplete="off" >
+                <br><br>
+                <input style="width: 50%;" type="text" id="fullpassword" placeholder="Parola" required autocomplete="off">
+                <br><br>
+
+                <select id="rang" style="width: 200px;height: 30px; border-radius: 5px; border-width: 2px;"> 
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <br><br>
+                    <button id="btnAddUsr">Submit</button>
+            </div>
+            </center>
+              
+            </form>
+
+
+            <center>
+                <div id="utilizatori"></div>
+            </center>
+            
+
+            <script src="lib/ajaxadmin.js"></script>
+        ';
+    }
+    ?>
+            </section>
+        </div>
+        
+<!------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------>
+
+        <div class="page" id="activitatile">
+
+            <header class="sidebar">
+            <div class="titlul">
+                <center>Project manager</center>
+                <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
+            </div>
+                <ul>
+                    <?php
+
+                        if($_SESSION['name']=="admin")
+                        {
+                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                        }
+
+
+                    ?>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
+                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
+                    <li><a href="logout.php">Log out</a></li>
+                </ul>
+            </header>
+
+
+            <section class="main">
+
+                            <?php
+
+                                if($_SESSION['name']=="admin")
+                                                {
+                                    echo "
+                                        <center>
+                                            <div id='actions'></div>
+                                        </center>
+
+                                        <script src='lib/ajax_activity.js'></script>
+                                        ";
+                                    }
+                            ?>
+
+            </section>
+           
+        </div>
+    
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------>
+
+
+        <div class="page active" id="kanbanul">
+
+            <header class="sidebar">
+            <div class="titlul">
+                <center>Project manager</center>
+                <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
+            </div>
+                <ul>
+                    <?php
+
+                        if($_SESSION['name']=="admin")
+                        {
+                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                        }
+
+                    ?>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
+                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
+                    <li><a href="logout.php">Log out</a></li>
+                </ul>
+            </header>
+
+
+            <section class="main">
+                <script src="lib/ajaxkanban.js"></script>
+
+
+<div class="rand">
+    <div class="coloana">
+                    <center><h1>To Do</h1></center> 
+
+                    <div class="wrapper" style=" margin-top: 0px; background: rgba(255, 198, 106 ,0.9);">
+
+                    <form>
+                      <div >
+                        <input type="text" id="txt" placeholder="Enter task" required autocomplete="off">
+                        &nbsp;
+                        <button class="btnkanban" id="btn">Submit</button>
+                      </div>
+                    </form>
+                    <br>
+                    <table id="data" >
+
+                    </table>
+
+                  </div>
+    </div>
+
+    <div class="coloana">
+
+                    <center><h1>Doing</h1></center> 
+                    <div class="wrapper" style=" margin-top: 0px; background: rgba(246, 255, 131 ,0.9);">
+
+                    <form>
+                      <div >
+                        <input type="text" id="txt1" placeholder="Enter task" required autocomplete="off">
+                        &nbsp;
+                        <button class="btnkanban" id="btn1">Submit</button>
+                      </div>
+                    </form>
+                    <br>
+                    <table id="data1" >
+
+                    </table>
+
+                  </div>
+
+
+
+    </div>
+    <div class="coloana">
+                    <center><h1>Done</h1></center> 
+                    <div class="wrapper" style=" margin-top: 0px; background: rgba(177, 255, 132 ,0.9);">
+                    <form>
+                      <div >
+                        <input type="text" id="txt2" placeholder="Enter task" required autocomplete="off">
+                        &nbsp;
+                        <button class="btnkanban" id="btn2" >Submit</button>
+                      </div>
+                    </form>
+                    <br>
+                    <table id="data2" >
+                    </table>
+                  </div>
+    </div>
+
+
+</div>
+
+            </section>
+        </div>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------>
+
+        <div class="page" id="calendarul">
+
+            <style>
+                    td
+                        {
+                            background-color: white  ;
+                      
+                            border-radius: 5px;
+                        }
+
+
+                        .fc-body tr td .fc-scroller.fc-day-grid-container .fc-day-grid.fc-unselectable .fc-row.fc-week.fc-widget-content .fc-bg table tbody tr td.fc-day.fc-today {
+                                    background-color: rgba(199, 152, 82, 0.81);
+                        }
+
+            </style>
+
+            <header class="sidebar">
+            <div class="titlul">
+                <center>Project manager</center>
+                <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
+            </div>
+                <ul>
+                    <?php
+
+                        if($_SESSION['name']=="admin")
+                        {
+                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                        }
+
+                    ?>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
+                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
+                    <li><a href="logout.php">Log out</a></li>
+                </ul>
+            </header>
+
+                <section class="main">
+                    <br>
+                    <br>
+                      <script src="lib/ajaxcalendar.js"></script>
+             
+                      <div  class="container">
+                        <div id="calendar">
+                      </div>
+
+
+                </section>
+        </div>
+<!---------------------------------------------------------------------------------------------- -->
+
+</body>
+</html>
+
+
+
+
+<?php 
+}
+else
+{
+     header("Location: index.php");
+     exit();
+}
+
+?>
+
+
+
+
