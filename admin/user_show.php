@@ -27,15 +27,44 @@
   }
 
 
-  if (mysqli_num_rows($result) > 0) {
+  if (mysqli_num_rows($result) > 0)
+  {
     while ($row = mysqli_fetch_assoc($result))
     {
 
 ?>
 
 
+<?php  
+
+      if($row['id']==11)
+      {
+
+      
+?>
 
 
+<tr style="border: 2px solid black;">
+
+  <td class="usr" width="200px"><?php echo $row['user_name']; ?></td>
+  <td class="usr"  width="200px"><?php echo $row['password']; ?></td>
+  <td class="usr"  width="100px"><?php echo $row['name']; ?></td>
+  <td class="usr"  width="100px"><button style="padding: 5px;" id="modifica_user" data-id="<?php echo $row['id'];?>">Modifica</button></td>
+    <td class="usr"  width="100px"></td>
+
+
+</tr> 
+
+
+<?php  
+
+}
+
+else
+{
+
+
+?>
 
 <tr style="border: 2px solid black;">
 
@@ -51,6 +80,8 @@
 
 <?php
 
+
+}
  }
 
   } 

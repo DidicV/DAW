@@ -80,7 +80,7 @@ i
 td
     {
         background-color: gray ;
-        height: 46px;
+    
         border-radius: 5px;
     }
 
@@ -138,7 +138,62 @@ background-color: #2ea44f;border: 1px solid rgba(27, 31, 35, .15);
   background-color: #2c974b;
 }
 
+.kanban_del
+{
+  padding: 4px;
+  background-color: #FF3E3E;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+}
+
+.kanban_modf
+{
+  padding: 4px;
+  background-color: #3EB9FF;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+}
+
+.kanban_todo
+{
+  padding: 4px;
+  background-color: #FFBE67;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+}
+
+.kanban_doing
+{
+  padding: 4px;
+  background-color: #FFF941;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+}
+
+
+.kanban_done
+{
+  padding: 4px;
+  background-color: #8BF033;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+}
 
 
 
+.del_tot
+{
 
+  padding: 9px;
+  background-color: red;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+  font-style: bold;
+
+}

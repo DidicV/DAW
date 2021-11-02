@@ -14,10 +14,10 @@
 
 			<b><p> &nbsp  <?php echo $row['txt']; ?></p></b>
 			<i><p>&nbsp Added by: <?php echo $row['add_by']; ?></p></i>
-			<button style="padding: 5px;" id="doing" data-id="<?php echo $row['id']; ?>">Doing</button>
-			<button style="padding: 5px;" id="done" data-id="<?php echo $row['id']; ?>">Done</button>
-			<button style="padding: 5px;" id="modifica" data-id="<?php echo $row['txt']; ?>">Modifica</button>
-			<button style="padding: 5px;" id="delete" data-id="<?php echo $row['id']; ?>">Sterge</button>
+			<button class="kanban_doing" id="doing" data-id="<?php echo $row['id']; ?>">Doing</button>
+			<button class="kanban_done" id="done" data-id="<?php echo $row['id']; ?>">Done</button>
+			<button class="kanban_modf" id="modifica" data-id="<?php echo $row['txt']; ?>">Modifica</button>
+			<button class="kanban_del" id="delete" data-id="<?php echo $row['id']; ?>">Sterge</button>
 			<p style="font-size: 0px;">&nbsp</p>
 	</td>
 </tr> 

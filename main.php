@@ -31,7 +31,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
 
 
- 
+
+
 </head>
 <body>
 
@@ -39,8 +40,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
 
 
-<!------------------------------------------------------------------------------------------------------------------------>
-<!------------------------------------------------------------------------------------------------------------------------>
+<!---------------------------ADMIN--------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
 
  <div class="page" id="admin">
 
@@ -65,7 +66,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             </header>
 
 
-            <section class="main">
+            <section  class="main">
     <?php
     if($_SESSION['name']=="admin")
     {
@@ -76,18 +77,20 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <form>
             <center>
              <div class="wrapper" style=" background: white; width: 500px;">
+             <center><b> Add user </b></center>
+             <br>
 
                 <input style="width: 50%;" type="text" id="fullname" placeholder="Numele" required autocomplete="off" >
                 <br><br>
                 <input style="width: 50%;" type="text" id="fullpassword" placeholder="Parola" required autocomplete="off">
                 <br><br>
 
-                <select id="rang" style="width: 200px;height: 30px; border-radius: 5px; border-width: 2px;"> 
+                <select id="rang" style="width: 100px;height: 30px; border-radius: 5px; border-width: 2px;"> 
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
                 <br><br>
-                    <button id="btnAddUsr">Submit</button>
+                    <button class="btnkanban" id="btnAddUsr">Submit</button>
             </div>
             </center>
               
@@ -103,11 +106,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         ';
     }
     ?>
-            </section>
+            </section> 
         </div>
         
-<!------------------------------------------------------------------------------------------------------------------------>
-<!------------------------------------------------------------------------------------------------------------------------>
+<!----------------------------ACTIVITIES------------------------------------------------------------------>
+<!-------------------------------------------------------------------------------------------------------->
 
         <div class="page" id="activitatile">
 
@@ -135,27 +138,103 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
             <section class="main">
 
-                            <?php
+    <?php
+    if($_SESSION['name']=="admin")
+    {
+        echo '
 
-                                if($_SESSION['name']=="admin")
-                                                {
-                                    echo "
-                                        <center>
-                                            <div id='actions'></div>
-                                        </center>
 
-                                        <script src='lib/ajax_activity.js'></script>
-                                        ";
-                                    }
-                            ?>
+            <center>
+                
+                <h1>Filtru de interogari</h1>
+                <input style="width: 300px; " type="text" name="search_text" id="search_text"/> 
+                <span></span> <span></span><span></span>
+                <button class="del_tot" id="delete_activiti" data-id="1">Sterge tot</button>
 
-            </section>
+
+
+                <div id="result"></div>
+
+
+            </center>
+
+ 
+        ';
+    }
+    ?>
+
+
+<script>
+$(document).ready(function(){
+
+//se incarca pagina cand o accesam
+    $(document).on("click", "#rel", function(){
+
+                load_data();        
+  });
+
+//incarcarea contentului
+    load_data();
+    function load_data(query)
+    {
+        $.ajax({
+            url:"activity/fetch.php",
+            method:"post",
+            data:{query:query},
+            success:function(data)
+            {
+                $('#result').html(data);
+            }
+        });
+    }
+
+//stergere dn activitate
+    $(document).on("click", "#delete_activiti", function(){
+    id = $(this).data("id");
+    element = $(this);
+
+    $.ajax({
+      url: 'activity/activiti_delete.php',
+      type: 'post',
+      data: {id: id},
+      success: function(result) {
+        if (result == 1) {
+          $(element).closest("li").fadeOut();
+          var url = $("#search_text").val();
+
+          load_data(url);
+        }
+      }
+    });
+  });
+    
+//interogari la baza e date dupa introducere in input
+    $('#search_text').keyup(function(){
+        var search = $(this).val();
+        if(search != '')
+        {
+            load_data(search);
+        }
+        else
+        {
+            load_data();            
+        }
+    });
+});
+</script>
+
+
+
+</section>
+
+
+
            
-        </div>
+</div>
     
 
-<!------------------------------------------------------------------------------------------------------------------------>
-<!------------------------------------------------------------------------------------------------------------------------>
+<!-------------------------KANBAN--------------------------------------------------------------->
+<!---------------------------------------------------------------------------------------------->
 
 
         <div class="page active" id="kanbanul">
@@ -185,26 +264,35 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                 <script src="lib/ajaxkanban.js"></script>
 
 
-<div class="rand">
-    <div class="coloana">
-                    <center><h1>To Do</h1></center> 
+<!--------------------------------- TO DO   -------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------------->
 
-                    <div class="wrapper" style=" margin-top: 0px; background: rgba(255, 198, 106 ,0.9);">
+    <div class="rand">
+        <div class="coloana">
+                        <center><h1>To Do</h1></center> 
 
-                    <form>
-                      <div >
-                        <input type="text" id="txt" placeholder="Enter task" required autocomplete="off">
-                        &nbsp;
-                        <button class="btnkanban" id="btn">Submit</button>
+                        <div class="wrapper" style=" margin-top: 0px; background: rgba(255, 198, 106 ,0.9);">
+
+                        <form>
+                          <div >
+                            <input type="text" id="txt" placeholder="Enter task" required autocomplete="off">
+                            &nbsp;
+                            <button class="btnkanban" id="btn">Submit</button>
+                          </div>
+                        </form>
+                        <br>
+                        <table id="data" >
+
+                        </table>
+
                       </div>
-                    </form>
-                    <br>
-                    <table id="data" >
-
-                    </table>
-
-                  </div>
     </div>
+
+
+<!--------------------------------- DOING   -------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------------->
+
+
 
     <div class="coloana">
 
@@ -225,9 +313,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
                   </div>
 
-
-
     </div>
+
+
+
+<!---------------------------------  DONE   -------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------------->
+
     <div class="coloana">
                     <center><h1>Done</h1></center> 
                     <div class="wrapper" style=" margin-top: 0px; background: rgba(177, 255, 132 ,0.9);">
@@ -247,29 +339,37 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
 </div>
 
-            </section>
-        </div>
+</section>
+</div>
 
 
-<!------------------------------------------------------------------------------------------------------------------------>
-<!------------------------------------------------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+<!---------------------------------CALENDAR--------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------------->
+
+
+
+
 
         <div class="page" id="calendarul">
-
             <style>
                     td
-                        {
-                            background-color: white  ;
-                      
-                            border-radius: 5px;
-                        }
-
-
-                        .fc-body tr td .fc-scroller.fc-day-grid-container .fc-day-grid.fc-unselectable .fc-row.fc-week.fc-widget-content .fc-bg table tbody tr td.fc-day.fc-today {
-                                    background-color: rgba(199, 152, 82, 0.81);
-                        }
-
+                    {
+                        background-color: white  ;
+                        border-radius: 5px;
+                    }
+                    .fc-body tr td .fc-scroller.fc-day-grid-container .fc-day-grid.fc-unselectable .fc-row.fc-week.fc-widget-content .fc-bg table tbody tr td.fc-day.fc-today {
+                                background-color: rgba(199, 152, 82, 0.81);
+                    }
             </style>
+
 
             <header class="sidebar">
             <div class="titlul">
@@ -290,6 +390,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
             </header>
+
 
                 <section class="main">
                     <br>
