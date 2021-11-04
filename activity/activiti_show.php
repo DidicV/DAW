@@ -1,33 +1,55 @@
-
-<table style="border: 1px solid black; border-collapse: collapse;">
-  <style>
-    .actv{border: 1px solid black; border-collapse: collapse; text-align: center;}
-  </style>
-      <tr>
-        <td class="actv">Activitatea</td>
-        <td class="actv">Data executiei</td>
-        <td class="actv">Eliminare</td>
-    </tr>
 <?php
-  include 'config.php';
 
-  $sql = "SELECT * FROM activitati";
-  $result = mysqli_query($conn, $sql);
+include 'config.php';
 
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result))
-    {
+$output = '';
+
+//CAUTATREA IN BAZA DE DATE UNDE SUNT COMBINATII INTRODUSE
+if(isset($_POST["query"]))
+{
+	$search = mysqli_real_escape_string($conn, $_POST["query"]);
+	$query = "SELECT * FROM activitati WHERE activitate LIKE '%".$search."%'";
+}
+else
+{
+	$query = "SELECT * FROM activitati ORDER BY id";
+}
+
+$result = mysqli_query($conn, $query);
+
+
+
+//AFISAREA ACTIVITATILOR
+if(mysqli_num_rows($result) > 0)
+{
+	$output .= '
+					<table style="border: 1px solid black; border-collapse: collapse;">
+						<tr>
+							<th class="actv_head">Action</th>
+							<th class="actv_head">Date</th>
+							<th class="actv_head">Delete</th>
+
+						</tr>';
+	while($row = mysqli_fetch_array($result))
+	{
+		$output .= '
+			<tr class="actv">
+				<td class="actv" style="width: 700px; text-align: center;" >'.$row["activitate"].'</td>
+				<td class="actv" style="width: 200px; text-align: center;">'.$row["create_date"].'</td>
+				<td class="actv" style="width: 100px; text-align: center;"> <button class="delete_bt" id="delete_activiti" data-id='.$row["id"].' >Sterge </button> </td>
+			</tr>
+		';
+	}
+	echo $output;
+}
+else
+{
+	echo 'Nu sunt asa date';
+}
 ?>
 
-<tr>
-
-  <td class="actv" width="500px"><?php echo $row['activitate']; ?></td>
-  <td class="actv" width="100px"><?php echo $row['create_date']; ?></td>
-
-  <td class="actv" width="100px"><button style="padding: 5px;" id="delete_activiti" data-id="<?php echo $row['id']; ?>">Sterge</button></td>
 
 
-</tr> 
 
 
-<?php } } ?>
+

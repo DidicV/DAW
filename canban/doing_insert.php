@@ -1,5 +1,5 @@
 <?php
-  // Include Connection
+
   include 'config.php';
 
   $txt = $_POST['txt'];

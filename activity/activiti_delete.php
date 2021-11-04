@@ -6,28 +6,26 @@
 
 
 
-if($id==1)
-{
-
-
-//STERGE TOT
+  if($id==1)
+  {
+  //STERGE TOT
     $sql = "DELETE FROM activitati";
-  $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
-  if($result) 
-  {
-    echo 1;
+    if($result) 
+    {
+      echo 1;
+    }
+    else 
+    {
+      echo "Error: {$sql}" . mysqli_error($conn);
+    }
   }
-  else 
-  {
-    echo "Error: {$sql}" . mysqli_error($conn);
-  }
 
-}
 
+ //STERGE O ANUMITA ACTIVITATE
 else
 {
-
 
   $sql = "DELETE FROM activitati WHERE id='$id'";
   $result = mysqli_query($conn, $sql);
@@ -43,9 +41,6 @@ else
 
 
 }
-
-
-
 
 
 ?>

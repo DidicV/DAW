@@ -25,10 +25,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
     <script type="text/javascript">
         var edit_state=false;
-        var textBD="";
+        var text_BD="";
     </script>
 
+<style type="text/css">
+    
 
+    td,th{
+        height: 50px;
+        background-color: white;
+    }
+</style>
 
 
 
@@ -150,6 +157,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                 <input style="width: 300px; " type="text" name="search_text" id="search_text"/> 
                 <span></span> <span></span><span></span>
                 <button class="del_tot" id="delete_activiti" data-id="1">Sterge tot</button>
+                <br><br>
 
 
 
@@ -178,7 +186,7 @@ $(document).ready(function(){
     function load_data(query)
     {
         $.ajax({
-            url:"activity/fetch.php",
+            url:"activity/activiti_show.php",
             method:"post",
             data:{query:query},
             success:function(data)
@@ -360,13 +368,26 @@ $(document).ready(function(){
 
         <div class="page" id="calendarul">
             <style>
-                    td
+
+
+
+                    .fc-body tr td .fc-scroller.fc-day-grid-container
                     {
-                        background-color: white  ;
-                        border-radius: 5px;
+                        background-color: white;
+
+
+                        
                     }
-                    .fc-body tr td .fc-scroller.fc-day-grid-container .fc-day-grid.fc-unselectable .fc-row.fc-week.fc-widget-content .fc-bg table tbody tr td.fc-day.fc-today {
+
+
+
+
+
+                     .fc-day-grid.fc-unselectable .fc-row.fc-week.fc-widget-content .fc-bg 
+                    table tbody tr td.fc-day.fc-today {
                                 background-color: rgba(199, 152, 82, 0.81);
+
+
                     }
             </style>
 
@@ -397,14 +418,14 @@ $(document).ready(function(){
                     <br>
                       <script src="lib/ajaxcalendar.js"></script>
              
-                      <div  class="container">
+                    
                         <div id="calendar">
-                      </div>
+                     
 
 
                 </section>
         </div>
-<!---------------------------------------------------------------------------------------------- -->
+<!------------------------------------------------------------------------------------------------>
 
 </body>
 </html>

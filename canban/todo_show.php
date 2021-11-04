@@ -10,7 +10,7 @@
 ?>
 
 <tr>
-	<td style="border:1px solid black; padding: 2.5%;" width="370px">
+	<td style="border:1px solid black; padding: 2.5%; background: #F6F6F6;"  width="370px">
 
 			<b><p> &nbsp  <?php echo $row['txt']; ?></p></b>
 			<i><p>&nbsp Added by: <?php echo $row['add_by']; ?></p></i>
