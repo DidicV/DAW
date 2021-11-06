@@ -16,7 +16,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <script src="lib/spaJS.js"></script>
 
 
-
   <link rel="stylesheet" href="lib/fullcalendar.min.css" />
   <script src="lib/jquery-3.6.0.min.js"></script>
   <script src="lib/moment.min.js"></script>
@@ -28,14 +27,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         var text_BD="";
     </script>
 
-<style type="text/css">
-    
-
-    td,th{
-        height: 50px;
-        background-color: white;
-    }
-</style>
+    <style>
+        td,th{
+            height: 50px;
+            background-color: white;
+        }
+    </style>
 
 
 
@@ -52,28 +49,29 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
  <div class="page" id="admin">
 
-            <header class="sidebar">
-            <div class="titlul">
-                <center>Project manager</center>
-                <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
-            </div>
-                <ul>
+    <header class="sidebar">
+        <div class="titlul">
+            <center>Project manager</center>
+            <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
+        </div>
+            <ul>
 
-                    <?php
+                <?php
 
-                        if($_SESSION['name']=="admin")
-                        {
-                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
-                        }
-                    ?>
+                    if($_SESSION['name']=="admin")
+                    {
+                        echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                    }
+                ?>
+
                     <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
                     <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
                     <li><a href="logout.php">Log out</a></li>
-                </ul>
-            </header>
+            </ul>
+     </header>
 
 
-            <section  class="main">
+    <section  class="main">
     <?php
     if($_SESSION['name']=="admin")
     {
@@ -113,8 +111,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         ';
     }
     ?>
-            </section> 
-        </div>
+    </section> 
+    </div>
         
 <!----------------------------ACTIVITIES------------------------------------------------------------------>
 <!-------------------------------------------------------------------------------------------------------->
@@ -367,29 +365,6 @@ $(document).ready(function(){
 
 
         <div class="page" id="calendarul">
-            <style>
-
-
-
-                    .fc-body tr td .fc-scroller.fc-day-grid-container
-                    {
-                        background-color: white;
-
-
-                        
-                    }
-
-
-
-
-
-                     .fc-day-grid.fc-unselectable .fc-row.fc-week.fc-widget-content .fc-bg 
-                    table tbody tr td.fc-day.fc-today {
-                                background-color: rgba(199, 152, 82, 0.81);
-
-
-                    }
-            </style>
 
 
             <header class="sidebar">
