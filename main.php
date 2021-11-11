@@ -63,7 +63,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                         echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
                     }
                 ?>
-
                     <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
                     <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
                     <li><a href="logout.php">Log out</a></li>
