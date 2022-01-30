@@ -77,7 +77,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         echo '
 
             <br>
-                <div align="right"  style="opacity: 0.1;" ><button id="rel"><a style="font-size: 1em" href="#" data-target="activitatile" class="nav-link" >x</a></button></div>
+                <div align="right"  ><button id="rel"><a style="font-size: 1em" href="#" data-target="activitatile" class="nav-link" >x</a></button></div>
             <form>
             <center>
              <div class="wrapper" style=" background: white; width: 500px;">
