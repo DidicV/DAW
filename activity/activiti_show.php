@@ -8,11 +8,11 @@ $output = '';
 if(isset($_POST["query"]))
 {
 	$search = mysqli_real_escape_string($conn, $_POST["query"]);
-	$query = "SELECT * FROM activitati WHERE activitate LIKE '%".$search."%'";
+	$query = "SELECT * FROM activitati  WHERE activitate LIKE '%".$search."%' ORDER BY id DESC";
 }
 else
 {
-	$query = "SELECT * FROM activitati ORDER BY id";
+	$query = "SELECT * FROM activitati ORDER BY id DESC";
 }
 
 $result = mysqli_query($conn, $query);
