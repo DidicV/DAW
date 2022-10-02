@@ -1,7 +1,19 @@
 <?php
   include 'config.php';
 
-  $sql = "SELECT * FROM kanban WHERE stare=2";
+  session_start();
+  $role = $_SESSION['name'];
+  $id = $_SESSION['id'];
+
+  if($role == "admin")
+  {
+	$sql = "SELECT * FROM kanban WHERE stare=2";
+  }
+  else
+  {
+  	$sql = "SELECT * FROM kanban WHERE stare=2 AND (assigned = 0 OR assigned = '$id')";
+  }
+  
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_num_rows($result) > 0) {
