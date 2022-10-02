@@ -283,6 +283,48 @@ $(document).ready(function(){
                             <input type="text" id="txt" placeholder="Enter task" required autocomplete="off">
                             &nbsp;
                             <button class="btnkanban" id="btn">Submit</button>
+
+
+
+<?php 
+    if($_SESSION['name']=="admin")
+    {
+                $mysqli =  NEW MySQLi("localhost","root", "","daw");
+        $resultSet = $mysqli->query("SELECT id, user_name FROM users");  
+?>
+
+<center>
+    <select id="assign_to_id">
+        <option value="0">For all</option>
+        <?php 
+        while($rows= $resultSet->fetch_assoc())
+        {
+            $nume=$rows["user_name"];
+            $id=$rows['id'];
+            echo "<option value='$id'> $nume </option>";
+        }
+        ?>
+    </select>
+</center>
+
+<?php 
+    }
+    else
+    {
+        ?>
+
+        <div id="assign_to_id" value="0"></div>
+
+
+      <?php   
+    }
+?>
+
+
+
+
+
+
                           </div>
                         </form>
                         <br>
@@ -309,6 +351,32 @@ $(document).ready(function(){
                         <input type="text" id="txt1" placeholder="Enter task" required autocomplete="off">
                         &nbsp;
                         <button class="btnkanban" id="btn1">Submit</button>
+
+<?php 
+    if($_SESSION['name']=="admin")
+    {
+                $mysqli =  NEW MySQLi("localhost","root", "","daw");
+        $resultSet = $mysqli->query("SELECT id, user_name FROM users");  
+?>
+
+<center>
+    <select id="assign_to_id1">
+        <option value="0">For all</option>
+        <?php 
+        while($rows= $resultSet->fetch_assoc())
+        {
+            $nume=$rows["user_name"];
+            $id=$rows['id'];
+            echo "<option value='$id'> $nume </option>";
+        }
+        ?>
+    </select>
+</center>
+
+<?php 
+    }
+?>
+
                       </div>
                     </form>
                     <br>
@@ -333,6 +401,32 @@ $(document).ready(function(){
                         <input type="text" id="txt2" placeholder="Enter task" required autocomplete="off">
                         &nbsp;
                         <button class="btnkanban" id="btn2" >Submit</button>
+
+<?php 
+    if($_SESSION['name']=="admin")
+    {
+                $mysqli =  NEW MySQLi("localhost","root", "","daw");
+        $resultSet = $mysqli->query("SELECT id, user_name FROM users");  
+?>
+
+<center>
+    <select id="assign_to_id2">
+        <option value="0">For all</option>
+        <?php 
+        while($rows= $resultSet->fetch_assoc())
+        {
+            $nume=$rows["user_name"];
+            $id=$rows['id'];
+            echo "<option value='$id'> $nume </option>";
+        }
+        ?>
+    </select>
+</center>
+
+<?php 
+    }
+?>
+
                       </div>
                     </form>
                     <br>

@@ -1,6 +1,7 @@
 <?php
+  session_start();
   include 'config.php';
-
+  
   $sql = "SELECT * FROM kanban WHERE stare=1";
   $result = mysqli_query($conn, $sql);
 
