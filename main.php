@@ -21,7 +21,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
   <script src="lib/moment.min.js"></script>
   <script src="lib/fullcalendar.min.js"></script>
 
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         var edit_state=false;
         var text_BD="";
@@ -135,6 +136,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                     ?>
                     <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
                     <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
+
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
             </header>
@@ -246,6 +248,7 @@ $(document).ready(function(){
 
             <header class="sidebar">
             <div class="titlul">
+
                 <center>Project manager</center>
                 <center>Hello <?php echo $_SESSION['user_name']; ?> </center>
             </div>
@@ -254,13 +257,27 @@ $(document).ready(function(){
 
                         if($_SESSION['name']=="admin")
                         {
-                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                            echo '<li><a href="#" data-target="admin" class="nav-link">
+                            <i class="fa fa-user" style="font-size:24px;"></i>
+                            Admin
+                            </a></li>';
                         }
 
                     ?>
-                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
-                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
-                    <li><a href="logout.php">Log out</a></li>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">
+                        <i class="fa fa-columns" style="font-size:24px;"></i>
+                        Kanban</a>
+                    </li>
+
+                    <li><a href="#" data-target="calendarul" class="nav-link">
+                        <i class="fa fa-calendar" style="font-size:24px;"></i>
+                        Calendar</a>
+                    </li>
+
+                    <li><a href="logout.php">
+                        <i class="fa fa-sign-out" style="font-size:24px;"></i>
+                        Log out</a>
+                    </li>
                 </ul>
             </header>
 
@@ -274,9 +291,10 @@ $(document).ready(function(){
 
     <div class="rand">
         <div class="coloana">
-                        <center><h1>To Do</h1></center> 
 
-                        <div class="wrapper" style=" margin-top: 0px; background: rgba(255, 198, 106 ,0.9);">
+                        <center><h1 style="color: white;">To Do</h1></center> 
+
+                        <div class="wrapper" style=" margin-top: 0px; background: rgba(52, 61, 93);">
 
                         <form>
                           <div >
@@ -343,8 +361,8 @@ $(document).ready(function(){
 
     <div class="coloana">
 
-                    <center><h1>Doing</h1></center> 
-                    <div class="wrapper" style=" margin-top: 0px; background: rgba(246, 255, 131 ,0.9);">
+                    <center><h1 style="color: white;">Doing</h1></center> 
+                    <div class="wrapper" style=" margin-top: 0px; background: rgba(52, 61, 93);">
 
                     <form>
                       <div >
@@ -394,8 +412,8 @@ $(document).ready(function(){
 <!-------------------------------------------------------------------------------------------------------->
 
     <div class="coloana">
-                    <center><h1>Done</h1></center> 
-                    <div class="wrapper" style=" margin-top: 0px; background: rgba(177, 255, 132 ,0.9);">
+                    <center><h1 style="color: white;">Done</h1></center> 
+                    <div class="wrapper" style=" margin-top: 0px; background: rgba(52, 61, 93);">
                     <form>
                       <div >
                         <input type="text" id="txt2" placeholder="Enter task" required autocomplete="off">
