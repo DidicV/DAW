@@ -33,6 +33,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             height: 50px;
             background-color: white;
         }
+         .box {
+        width: 120px;
+        height: 30px;
+        border: 2px solid #999;
+        font-size: 1em;
+        color:  #696969;
+        background-color: #eee;
+        border-radius: 5px;
+        box-shadow: 1px 1px #ccc;
+      }
     </style>
 
 
@@ -310,9 +320,9 @@ $(document).ready(function(){
                 $mysqli =  NEW MySQLi("localhost","root", "","daw");
         $resultSet = $mysqli->query("SELECT id, user_name FROM users");  
 ?>
-
+<br><br>
 <center>
-    <select id="assign_to_id">
+    <select id="assign_to_id" class="box">
         <option value="0">For all</option>
         <?php 
         while($rows= $resultSet->fetch_assoc())
@@ -376,9 +386,9 @@ $(document).ready(function(){
                 $mysqli =  NEW MySQLi("localhost","root", "","daw");
         $resultSet = $mysqli->query("SELECT id, user_name FROM users");  
 ?>
-
+<br><br>
 <center>
-    <select id="assign_to_id1">
+    <select id="assign_to_id1" class="box">
         <option value="0">For all</option>
         <?php 
         while($rows= $resultSet->fetch_assoc())
@@ -426,9 +436,9 @@ $(document).ready(function(){
                 $mysqli =  NEW MySQLi("localhost","root", "","daw");
         $resultSet = $mysqli->query("SELECT id, user_name FROM users");  
 ?>
-
+<br><br>
 <center>
-    <select id="assign_to_id2">
+    <select id="assign_to_id2" class="box">
         <option value="0">For all</option>
         <?php 
         while($rows= $resultSet->fetch_assoc())
