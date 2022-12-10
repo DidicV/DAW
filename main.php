@@ -71,12 +71,26 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
                     if($_SESSION['name']=="admin")
                     {
-                        echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                            echo '<li><a href="#" data-target="admin" class="nav-link">
+                            <i class="fa fa-user" style="font-size:24px;"></i>
+                            Admin
+                            </a></li>';
                     }
                 ?>
-                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
-                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
-                    <li><a href="logout.php">Log out</a></li>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">
+                        <i class="fa fa-columns" style="font-size:24px;"></i>
+                        Kanban</a>
+                    </li>
+
+                    <li><a href="#" data-target="calendarul" class="nav-link">
+                        <i class="fa fa-calendar" style="font-size:24px;"></i>
+                        Calendar</a>
+                    </li>
+
+                    <li><a href="logout.php">
+                        <i class="fa fa-sign-out" style="font-size:24px;"></i>
+                        Log out</a>
+                    </li>
             </ul>
      </header>
 
@@ -139,7 +153,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
                         if($_SESSION['name']=="admin")
                         {
-                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                            echo '<li><a href="#" data-target="admin" class="nav-link">
+                            <i class="fa fa-user" style="font-size:24px;"></i>
+                            Admin
+                            </a></li>';
                         }
 
 
@@ -498,13 +515,27 @@ $(document).ready(function(){
 
                         if($_SESSION['name']=="admin")
                         {
-                            echo '<li><a href="#" data-target="admin" class="nav-link">Admin</a></li>';
+                            echo '<li><a href="#" data-target="admin" class="nav-link">
+                            <i class="fa fa-user" style="font-size:24px;"></i>
+                            Admin
+                            </a></li>';
                         }
 
                     ?>
-                    <li><a href="#" data-target="kanbanul" class="nav-link">Kanban</a></li>
-                    <li><a href="#" data-target="calendarul" class="nav-link">Calendar</a></li>
-                    <li><a href="logout.php">Log out</a></li>
+                    <li><a href="#" data-target="kanbanul" class="nav-link">
+                        <i class="fa fa-columns" style="font-size:24px;"></i>
+                        Kanban</a>
+                    </li>
+
+                    <li><a href="#" data-target="calendarul" class="nav-link">
+                        <i class="fa fa-calendar" style="font-size:24px;"></i>
+                        Calendar</a>
+                    </li>
+
+                    <li><a href="logout.php">
+                        <i class="fa fa-sign-out" style="font-size:24px;"></i>
+                        Log out</a>
+                    </li>
                 </ul>
             </header>
 
