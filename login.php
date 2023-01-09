@@ -42,6 +42,8 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];
+            	$_SESSION['departament'] = $row['departament'];
+            	$_SESSION['departament_name'] = $row['departament_name'];
             	header("Location: main.php");
 		        exit();
             }else{
