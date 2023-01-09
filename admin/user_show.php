@@ -7,6 +7,7 @@
               <th class="actv_head">Nume</th>
               <th class="actv_head">Parola</th>
               <th class="actv_head">Stare</th>
+              <th class="actv_head">Departament</th>
               <th class="actv_head">Modifica</th>
               <th class="actv_head">Sterge</th>
             </tr>
@@ -61,6 +62,7 @@
   <td class="usr" width="200px"><?php echo $row['user_name']; ?></td>
   <td class="usr"  width="200px"><?php echo $row['password']; ?></td>
   <td class="usr"  width="100px"><?php echo $row['name']; ?></td>
+  <td class="usr"  width="100px"><?php echo $row['departament_name']; ?></td>
   <td class="usr"  width="100px"><button class="modify_btn" id="modifica_user" data-id="<?php echo $row['id'];?>">Modifica</button></td>
     <td class="usr"  width="100px"></td>
 
@@ -83,6 +85,7 @@ else
 	<td class="usr" width="200px"><?php echo $row['user_name']; ?></td>
 	<td class="usr"  width="200px"><?php echo $row['password']; ?></td>
 	<td class="usr"  width="100px"><?php echo $row['name']; ?></td>
+  <td class="usr"  width="100px"><?php echo $row['departament_name']; ?></td>
 	<td class="usr"  width="100px"><button class="modify_btn" id="modifica_user" data-id="<?php echo $row['id'];?>">Modifica</button></td>
 	<td class="usr"  width="100px"><button class="delete_btn" id="delete_user" data-id="<?php echo $row['id']; ?>">Sterge</button></td>
 

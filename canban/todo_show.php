@@ -4,14 +4,16 @@
   session_start();
   $role = $_SESSION['name'];
   $id = $_SESSION['id'];
+  $departament = $_SESSION['departament'];
 
   if($role == "admin")
   {
-	$sql = "SELECT * FROM kanban WHERE stare=1";
+	  $sql = "SELECT * FROM kanban WHERE stare=1";
   }
   else
   {
-  	$sql = "SELECT * FROM kanban WHERE stare=1 AND (assigned = 0 OR assigned = '$id')";
+
+    $sql = "SELECT * FROM kanban WHERE stare=1 AND (assigned = '$id' OR assigned = 0 OR assigned = '$departament')";
   }
   
   $result = mysqli_query($conn, $sql);
@@ -30,9 +32,18 @@
 
     		$res = mysqli_query($conn,"SELECT user_name FROM users WHERE id = '$user_id'");
     	
-			$r = mysqli_fetch_row($res);
+			  $r = mysqli_fetch_row($res);
 
     		$assign_to = $r[0];
+
+        if($assign_to == "")
+        {
+          $res = mysqli_query($conn,"SELECT departament_name FROM users WHERE departament = '$user_id'");
+      
+          $r = mysqli_fetch_row($res);
+
+          $assign_to = $r[0];
+        }
     	}
 ?>
 
