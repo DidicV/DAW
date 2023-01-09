@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: localhost
--- Timp de generare: oct. 25, 2021 la 01:50 PM
+-- Timp de generare: ian. 09, 2023 la 09:20 PM
 -- Versiune server: 10.4.21-MariaDB
 -- Versiune PHP: 8.0.10
 
@@ -33,15 +33,6 @@ CREATE TABLE `activitati` (
   `create_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Eliminarea datelor din tabel `activitati`
---
-
-INSERT INTO `activitati` (`id`, `activitate`, `create_date`) VALUES
-(109, 'victordidic a mutat cardul \"Calendar finisat\" din DONE->DOING', '2021-10-25 12:24:50'),
-(110, 'user a mutat cardul \"Calendar finisat\" din DOING->DONE', '2021-10-25 12:27:43'),
-(111, 'user a adaugat un card DONE \"yoyo\"', '2021-10-25 12:28:13');
-
 -- --------------------------------------------------------
 
 --
@@ -64,14 +55,14 @@ INSERT INTO `events` (`id`, `title`, `start_event`, `end_event`) VALUES
 (24, 'Afarace 4 cap', '2021-09-28 00:00:00', '2021-09-29 00:00:00'),
 (34, 'Laboarator', '2021-09-29 00:00:00', '2021-09-30 00:00:00'),
 (42, 'Ceva nou', '2021-09-23 00:00:00', '2021-09-24 00:00:00'),
-(47, 'asfd', '2021-10-01 00:00:00', '2021-10-02 00:00:00'),
-(50, 'esadfd', '2021-09-22 00:00:00', '2021-09-23 00:00:00'),
 (64, 'Atestare SBC', '2021-10-15 00:00:00', '2021-10-16 00:00:00'),
-(65, 'thergsefadfd', '2021-10-16 00:00:00', '2021-10-17 00:00:00'),
-(104, 'Checkpoint 3', '2021-11-03 00:00:00', '2021-11-04 00:00:00'),
 (105, 'DAW ', '2021-10-21 00:00:00', '2021-10-22 00:00:00'),
 (108, 'SBC 3', '2021-10-22 00:00:00', '2021-10-23 00:00:00'),
-(112, 'f', '2021-10-12 00:00:00', '2021-10-13 00:00:00');
+(114, 'Atestare', '2021-11-04 00:00:00', '2021-11-05 00:00:00'),
+(115, 'Checkpoint 3', '2021-11-02 00:00:00', '2021-11-03 00:00:00'),
+(117, 'Laboratoare', '2021-11-09 00:00:00', '2021-11-10 00:00:00'),
+(121, 'Atestare Daw', '2021-11-25 00:00:00', '2021-11-26 00:00:00'),
+(122, 'Endava', '2022-03-30 00:00:00', '2022-03-31 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -83,24 +74,23 @@ CREATE TABLE `kanban` (
   `id` int(11) NOT NULL,
   `txt` text NOT NULL,
   `stare` int(11) DEFAULT NULL,
-  `add_by` varchar(100) DEFAULT NULL
+  `add_by` varchar(100) DEFAULT NULL,
+  `assigned` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Eliminarea datelor din tabel `kanban`
 --
 
-INSERT INTO `kanban` (`id`, `txt`, `stare`, `add_by`) VALUES
-(88, 'APSI 3', 1, 'victordidic'),
-(136, 'Machine learning', 1, 'victordidic'),
-(137, 'Studierea materialului', 1, 'victordidic'),
-(138, 'Fixare bug', 2, 'victordidic'),
-(139, 'Schimbare fon pagina', 3, 'victordidic'),
-(142, 'Mai vechi', 2, 'victordidic'),
-(177, 'APSI 4', 3, 'victordidic'),
-(183, 'Calendar finisat', 3, 'victordidic'),
-(184, 'inca mai lucrez', 2, 'victordidic'),
-(197, 'yoyo', 3, 'user');
+INSERT INTO `kanban` (`id`, `txt`, `stare`, `add_by`, `assigned`) VALUES
+(268, 'documente pregătite', 3, 'victordidic', 0),
+(269, 'buletin', 1, 'victordidic', 14),
+(270, 'numai pentru mine si toti', 2, 'test', 12),
+(271, 'Task special', 1, 'victordidic', 0),
+(272, 'taskc', 2, 'victordidic', 0),
+(275, 'Eu scriu acum un mesaj foarte lungpentru testare', 3, 'victordidic', 0),
+(277, 'testarea', 1, 'victordidic', 2),
+(281, 'FOR ME', 1, 'victordidic', 11);
 
 -- --------------------------------------------------------
 
@@ -112,17 +102,21 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `departament` int(11) DEFAULT NULL,
+  `departament_name` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Eliminarea datelor din tabel `users`
 --
 
-INSERT INTO `users` (`id`, `user_name`, `password`, `name`) VALUES
-(11, 'victordidic', '12345', 'admin'),
-(12, 'test', '4321', 'user'),
-(14, 'user', '21072000vd', 'admin');
+INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `departament`, `departament_name`) VALUES
+(11, 'victordidic', '12345', 'admin', 5, 'Heads'),
+(12, 'catalin', '4321', 'user', 5, 'Heads'),
+(14, 'vitalie', '21072000vd', 'user', 2, 'Development'),
+(36, 'test', '1111', 'user', 3, 'HR'),
+(38, 'asdaf', 'sasrwqwe', 'user', 1, 'Testing');
 
 --
 -- Indexuri pentru tabele eliminate
@@ -161,25 +155,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pentru tabele `activitati`
 --
 ALTER TABLE `activitati`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT pentru tabele `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT pentru tabele `kanban`
 --
 ALTER TABLE `kanban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
 
 --
 -- AUTO_INCREMENT pentru tabele `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
