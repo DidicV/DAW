@@ -6,13 +6,32 @@
   $id = $_SESSION['id'];
   $departament = $_SESSION['departament'];
 
-  if($role == "admin")
+  $filter_value = $_POST['filter_value'];
+
+
+
+  if($filter_value == 1 || $filter_value == "")
   {
-	$sql = "SELECT * FROM kanban WHERE stare=2";
+    if($role == "admin")
+    {
+  	  $sql = "SELECT * FROM kanban WHERE stare=2";
+    }
+    else
+    {
+    	$sql = "SELECT * FROM kanban WHERE stare=2 AND (assigned = '$id' OR assigned = 0 OR assigned = '$departament')";
+    }
   }
-  else
+  elseif ($filter_value == 2) 
   {
-  	$sql = "SELECT * FROM kanban WHERE stare=2 AND (assigned = '$id' OR assigned = 0 OR assigned = '$departament')";
+      $sql = "SELECT * FROM kanban WHERE stare=2 AND assigned = 0 ";
+  }
+  elseif ($filter_value == 3) 
+  {
+    $sql = "SELECT * FROM kanban WHERE stare=2 AND assigned = '$departament' ";
+  }
+  elseif ($filter_value == 4) 
+  {
+    $sql = "SELECT * FROM kanban WHERE stare=2 AND assigned = '$id' ";
   }
   
   $result = mysqli_query($conn, $sql);

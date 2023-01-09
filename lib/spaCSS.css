@@ -24,6 +24,10 @@ body{
 }
 
 
+.child {
+  display: inline-block;
+}
+
 th
 {
   background-color: #16a085;

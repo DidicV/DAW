@@ -331,6 +331,19 @@ $(document).ready(function(){
     <section class="main">
         <script src="lib/ajaxkanban.js"></script>
 
+    <div class='parent'>
+
+        <h3 class="child" style="color: white;">Filter: </h3>
+        &nbsp;
+        <select class="child" id="filter" style="width: 150px; height: 25px;">
+            <option value=1>All</option>
+            <option value=2>For all</option>
+            <option value=3>My departament</option>
+            <option value=4>Assigned to me</option>
+        </select>
+
+    </div>
+
 
 <!--------------------------------- TO DO   ------------------------------------->
 <!------------------------------------------------------------------------------->
