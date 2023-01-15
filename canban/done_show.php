@@ -5,7 +5,7 @@
   $id = $_SESSION['id'];
   $departament = $_SESSION['departament'];
 
-  $filter_value = $_POST['filter_value'];
+  $filter_value = isset($_POST['filter_value']);
 
   if($filter_value == 1 || $filter_value == "")
   {

@@ -4,7 +4,7 @@
   session_start();
   $role = $_SESSION['name'];
   $id = $_SESSION['id'];
-  $departament = $_SESSION['departament'];
+  $departament = isset($_SESSION['departament']);
 
   $filter_value = $_POST['filter_value'];
 
