@@ -15,7 +15,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" href="lib/spaCSS.css">
     <script src="lib/spaJS.js"></script>
 
-
+  <script src="lib/sweetalert.min.js"></script>
+  
   <link rel="stylesheet" href="lib/fullcalendar.min.css" />
   <script src="lib/jquery-3.6.0.min.js"></script>
   <script src="lib/moment.min.js"></script>
